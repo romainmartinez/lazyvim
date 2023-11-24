@@ -5,7 +5,9 @@ return {
       tailwindcss = {
         filetypes_include = { "html.mako" },
       },
-      emmet_ls = {},
+      emmet_ls = {
+        filetypes = { "mako" },
+      },
     },
   },
 }
