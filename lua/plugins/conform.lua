@@ -4,30 +4,20 @@ return {
     opts = {
       formatters = {
         -- to be able to select all the rules (which include sort imports)
-        ruff_fix_all = {
-          command = "ruff",
-          args = {
-            "--fix",
+        ruff_fix = {
+          prepend_args = {
             "--select",
             "ALL",
-            "-e",
-            "-n",
-            "--stdin-filename",
-            "$FILENAME",
-            "-",
           },
-          stdin = true,
         },
         -- to be able to format long string
         -- once this is integrated into ruff, we can remove this
-        black_preview = {
-          command = "black",
-          args = { "--preview", "-" },
-          stdin = true,
+        black = {
+          prepend_args = { "--preview", "-" },
         },
       },
       formatters_by_ft = {
-        python = { "ruff_format", "ruff_fix_all", "black_preview" },
+        python = { "ruff_format", "ruff_fix", "black" },
         javascript = { "prettierd" },
         typescript = { "prettierd" },
         vue = { "prettierd" },
