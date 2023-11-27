@@ -3,7 +3,7 @@ return {
   opts = {
     servers = {
       tailwindcss = {
-        filetypes_include = { "html.mako" },
+        filetypes_include = { "html.mako", "markdown" },
       },
       emmet_ls = {
         filetypes = { "mako" },
