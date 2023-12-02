@@ -51,19 +51,16 @@ return {
   },
   {
     "mfussenegger/nvim-dap-python",
+    test_runner = "pytest",
     keys = {
       {
         "<leader>dm",
         function()
-          -- Get the current visual selection
           local save_reg = vim.fn.getreg("v") -- Save the current content of the register 'v'
           vim.cmd('silent! normal! "vy"') -- Yank the visual selection into register 'v'
           local selection = vim.fn.getreg("v")
           vim.fn.setreg("v", save_reg) -- Restore the content of the register 'v'
-
-          -- Remove trailing newlines from the selection
-          selection = selection:gsub("\n$", "")
-
+          selection = selection:gsub("\n$", "") -- Remove trailing newlines from the selection
           require("dap").repl.execute(selection)
         end,
         desc = "Evaluate selection",
