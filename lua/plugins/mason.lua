@@ -8,7 +8,7 @@ return {
         "lua-language-server",
         "marksman",
         "markdownlint",
-        "prettierd",
+        "prettier",
         "pyright",
         "ruff-lsp",
         "shfmt",
