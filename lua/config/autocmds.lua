@@ -7,12 +7,10 @@ local function augroup(name)
 end
 
 -- Auto-save when leaving a buffer or exiting Neovim
-vim.api.nvim_create_autocmd({ "BufLeave", "VimLeave" }, {
+vim.api.nvim_create_autocmd({ "BufLeave", "VimLeave", "FocusLost" }, {
   group = augroup("autosave"),
   callback = function()
-    -- Only try to save if the buffer is not a special buffer.
     if not vim.bo.buftype:match("nofile") then
-      -- Use `update` to save only if there have been changes.
       vim.cmd("silent! update")
     end
   end,
