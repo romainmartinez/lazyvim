@@ -11,7 +11,7 @@ return {
       {
         "<leader>fu",
         "<cmd>Telescope undo<cr>",
-        desc = "undo history",
+        desc = "Undo history",
       },
     },
     config = function(_, opts)
