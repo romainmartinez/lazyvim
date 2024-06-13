@@ -10,11 +10,6 @@ return {
             "ALL",
           },
         },
-        -- to be able to format long string
-        -- once this is integrated into ruff, we can remove this
-        black = {
-          prepend_args = { "--preview", "-" },
-        },
         prettier = {
           prepend_args = {
             "--plugin=prettier-plugin-tailwindcss",
@@ -22,7 +17,7 @@ return {
         },
       },
       formatters_by_ft = {
-        python = { "ruff_format", "ruff_fix", "black" },
+        python = { "ruff_format", "ruff_fix" },
         javascript = { "prettier" },
         typescript = { "prettier" },
         vue = { "prettier" },
