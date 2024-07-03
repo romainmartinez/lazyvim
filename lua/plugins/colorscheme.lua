@@ -10,4 +10,10 @@ return {
     priority = 800,
     opts = { variant = "moon" },
   },
+  {
+    "LazyVim/LazyVim",
+    opts = {
+      colorscheme = "catppuccin",
+    },
+  },
 }
