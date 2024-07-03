@@ -1,7 +1,7 @@
 return {
   {
     "catppuccin/nvim",
-    name = "catppucin",
+    name = "catppuccin",
     priority = 1000,
   },
   {
