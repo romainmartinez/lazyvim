@@ -27,4 +27,14 @@ local function copy_all_buffers_to_clipboard()
   vim.fn.setreg("+", result)
   print("All buffer contents copied to clipboard")
 end
-vim.keymap.set("n", "<leader>bc", copy_all_buffers_to_clipboard, { desc = "Copy all buffers to clipboard" })
+vim.keymap.set("n", "<leader>bC", copy_all_buffers_to_clipboard, { desc = "Copy all buffers to clipboard" })
+
+-- Function to copy the current buffer to clipboard
+local function copy_current_buffer_to_clipboard()
+  local current_bufnr = vim.api.nvim_get_current_buf()
+  local lines = vim.api.nvim_buf_get_lines(current_bufnr, 0, -1, false)
+  local content = table.concat(lines, "\n")
+  vim.fn.setreg("+", content)
+  print("Current buffer content copied to clipboard")
+end
+vim.keymap.set("n", "<leader>bc", copy_current_buffer_to_clipboard, { desc = "Copy current buffer to clipboard" })
