@@ -13,22 +13,26 @@ vim.keymap.set("n", "<leader>dD", ":w<CR>:split term://python %<CR>i", { desc = 
 local function copy_all_buffers_to_clipboard()
   local buffers = vim.api.nvim_list_bufs()
   local result = ""
+  local count = 0
   for _, bufnr in ipairs(buffers) do
     if vim.api.nvim_buf_is_loaded(bufnr) and vim.api.nvim_buf_is_valid(bufnr) then
       local filename = vim.api.nvim_buf_get_name(bufnr)
-      local lines = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
-      local content = table.concat(lines, "\n")
-      if result ~= "" then
-        result = result .. "\n\n"
+      if filename ~= "" then -- Check if the buffer is linked to a file
+        local lines = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
+        local content = table.concat(lines, "\n")
+        if result ~= "" then
+          result = result .. "\n\n"
+        end
+        result = result .. "File: " .. filename .. "\n```\n" .. content .. "\n```"
+        count = count + 1
       end
-      result = result .. "File: " .. filename .. "\n\n" .. content
     end
   end
   vim.fn.setreg("+", result)
-  print("All buffer contents copied to clipboard")
+  vim.notify(count .. " buffer(s) copied to clipboard")
 end
-vim.keymap.set("n", "<leader>bC", copy_all_buffers_to_clipboard, { desc = "Copy all buffers to clipboard" })
 
+vim.keymap.set("n", "<leader>bC", copy_all_buffers_to_clipboard, { desc = "Copy all buffers to clipboard" })
 -- Function to copy the current buffer to clipboard
 local function copy_current_buffer_to_clipboard()
   local current_bufnr = vim.api.nvim_get_current_buf()
