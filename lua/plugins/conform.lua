@@ -6,13 +6,9 @@ return {
         -- to be able to select all the rules (which include sort imports)
         ruff_fix = {
           prepend_args = {
+            "check",
             "--select",
             "ALL",
-          },
-        },
-        prettier = {
-          prepend_args = {
-            "--plugin=prettier-plugin-tailwindcss",
           },
         },
       },
