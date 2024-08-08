@@ -9,6 +9,7 @@ return {
             "check",
             "--select",
             "ALL",
+            "--unsafe-fixes",
           },
         },
       },
