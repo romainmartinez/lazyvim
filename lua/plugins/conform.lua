@@ -10,6 +10,8 @@ return {
             "--select",
             "ALL",
             "--unsafe-fixes",
+            "--ignore",
+            "T201",
           },
         },
       },
