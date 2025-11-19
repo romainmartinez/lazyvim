@@ -6,3 +6,17 @@
 --
 -- Or remove existing autocmds by their group name (which is prefixed with `lazyvim_` for the defaults)
 -- e.g. vim.api.nvim_del_augroup_by_name("lazyvim_wrap_spell")
+
+-- Auto-save when leaving a buffer or exiting Neovim
+local function augroup(name)
+  return vim.api.nvim_create_augroup("lazyvim_" .. name, { clear = true })
+end
+
+vim.api.nvim_create_autocmd({ "BufLeave", "VimLeave", "FocusLost" }, {
+  group = augroup("autosave"),
+  callback = function()
+    if not vim.bo.buftype:match("nofile") then
+      vim.cmd("silent! update")
+    end
+  end,
+})
