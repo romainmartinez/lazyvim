@@ -11,12 +11,19 @@
 local function augroup(name)
   return vim.api.nvim_create_augroup("lazyvim_" .. name, { clear = true })
 end
-
 vim.api.nvim_create_autocmd({ "BufLeave", "VimLeave", "FocusLost" }, {
   group = augroup("autosave"),
   callback = function()
     if not vim.bo.buftype:match("nofile") then
       vim.cmd("silent! update")
     end
+  end,
+})
+
+-- disable spell checking in markdown
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "markdown", "txt" },
+  callback = function()
+    vim.opt_local.spell = false
   end,
 })
