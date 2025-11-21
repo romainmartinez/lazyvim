@@ -6,12 +6,17 @@ return {
     { "nvim-lua/plenary.nvim", lazy = true },
   },
   keys = {
+    -- {
+    --   "<leader>e",
+    --   function()
+    --     require("yazi").yazi(nil, LazyVim.root())
+    --   end,
+    --   desc = "Explorer Yazi (root dir)",
+    -- },
     {
       "<leader>e",
-      function()
-        require("yazi").yazi(nil, LazyVim.root())
-      end,
-      desc = "Explorer Yazi (root dir)",
+      "<cmd>Yazi<cr>",
+      desc = "Explorer Yazi",
     },
     {
       "<leader>E",
