@@ -4,3 +4,6 @@
 
 vim.opt.scrolloff = 8
 vim.opt.sidescrolloff = 8
+
+-- Disable auto-inserting comment leader on new lines
+vim.opt.formatoptions:remove({ "c", "r", "o" })
