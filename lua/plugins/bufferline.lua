@@ -4,7 +4,7 @@ return {
     options = {
       groups = {
         items = {
-          require("bufferline.groups").builtin.pinned:with({ icon = "* " }),
+          require("bufferline.groups").builtin.pinned:with({ icon = "*" }),
         },
       },
     },
