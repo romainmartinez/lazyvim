@@ -13,6 +13,7 @@ return {
   },
   opts = {
     options = {
+      show_tab_indicators = false,
       numbers = function(opts)
         return opts.raise(opts.ordinal)
       end,
