@@ -12,6 +12,6 @@ return {
     },
   },
   opts = {
-    enabled = false, -- Start disabled, toggle with <leader>uH
+    enabled = true, -- Start enabled, toggle with <leader>uH
   },
 }
