@@ -5,6 +5,7 @@ return {
     priority = 1000,
     opts = { style = "storm" },
   },
+  { "rose-pine/neovim" },
   {
     "LazyVim/LazyVim",
     opts = {
