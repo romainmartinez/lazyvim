@@ -10,7 +10,7 @@ vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Center cursor after moving dow
 vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Center cursor after moving up half-page" })
 
 -- toggle markdown checklist
-vim.keymap.set("n", "<leader>ct", function()
+vim.keymap.set("n", "<leader>t", function()
   local line = vim.api.nvim_get_current_line()
   local new_line
 
