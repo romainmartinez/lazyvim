@@ -1,4 +1,18 @@
 -- Custom markdown commands (checklist toggle, open in Obsidian, etc.)
+
+-- Treat Obsidian .base files as YAML
+vim.filetype.add({
+  extension = {
+    base = "yaml",
+  },
+})
+
+local function open_in_obsidian()
+  local path = vim.fn.expand("%:p")
+  local encoded = vim.uri_encode(path, "rfc2396")
+  vim.ui.open("obsidian://open?path=" .. encoded)
+end
+
 local function toggle_checklist_line(line)
   if line:match("^(%s*)- %[x%] ") then
     return (line:gsub("%- %[x%] ", "- [ ] ", 1))
@@ -24,11 +38,7 @@ vim.api.nvim_create_autocmd("FileType", {
       vim.api.nvim_set_current_line(toggle_checklist_line(vim.api.nvim_get_current_line()))
     end, { buffer = true, desc = "Toggle markdown checklist" })
 
-    vim.keymap.set("n", "<leader>co", function()
-      local path = vim.fn.expand("%:p")
-      local encoded = vim.uri_encode(path, "rfc2396")
-      vim.ui.open("obsidian://open?path=" .. encoded)
-    end, { buffer = true, desc = "Open current file in Obsidian" })
+    vim.keymap.set("n", "<leader>co", open_in_obsidian, { buffer = true, desc = "Open current file in Obsidian" })
 
     vim.keymap.set("v", "<leader>t", function()
       local start_line = vim.fn.line("v")
@@ -43,6 +53,17 @@ vim.api.nvim_create_autocmd("FileType", {
       vim.api.nvim_buf_set_lines(0, start_line - 1, end_line, false, lines)
       vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "n", false)
     end, { buffer = true, desc = "Toggle markdown checklist (visual)" })
+  end,
+})
+
+-- Open in Obsidian for .base files (YAML database views)
+vim.api.nvim_create_autocmd("FileType", {
+  group = vim.api.nvim_create_augroup("obsidian_base_commands", { clear = true }),
+  pattern = { "yaml" },
+  callback = function()
+    if vim.fn.expand("%:e") == "base" then
+      vim.keymap.set("n", "<leader>co", open_in_obsidian, { buffer = true, desc = "Open current file in Obsidian" })
+    end
   end,
 })
 
