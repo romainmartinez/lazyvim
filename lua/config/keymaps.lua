@@ -20,7 +20,7 @@ vim.keymap.set({ "n", "v" }, "<leader>ay", function()
     vim.fn.setreg("+", text)
     vim.notify("Copied: " .. text, vim.log.levels.INFO)
   else
-    local text = string.format("@%s:%d", filepath, vim.fn.line("."))
+    local text = string.format("@%s", filepath)
     vim.fn.setreg("+", text)
     vim.notify("Copied: " .. text, vim.log.levels.INFO)
   end
