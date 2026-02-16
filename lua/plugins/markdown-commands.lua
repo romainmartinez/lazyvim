@@ -1,4 +1,4 @@
--- Toggle markdown checklist items with <leader>t (markdown only)
+-- Custom markdown commands (checklist toggle, open in Obsidian, etc.)
 local function toggle_checklist_line(line)
   if line:match("^(%s*)- %[x%] ") then
     return (line:gsub("%- %[x%] ", "- [ ] ", 1))
@@ -17,12 +17,18 @@ local function toggle_checklist_line(line)
 end
 
 vim.api.nvim_create_autocmd("FileType", {
-  group = vim.api.nvim_create_augroup("markdown_checklist", { clear = true }),
+  group = vim.api.nvim_create_augroup("markdown_commands", { clear = true }),
   pattern = { "markdown", "mdx" },
   callback = function()
     vim.keymap.set("n", "<leader>t", function()
       vim.api.nvim_set_current_line(toggle_checklist_line(vim.api.nvim_get_current_line()))
     end, { buffer = true, desc = "Toggle markdown checklist" })
+
+    vim.keymap.set("n", "<leader>co", function()
+      local path = vim.fn.expand("%:p")
+      local encoded = vim.uri_encode(path, "rfc2396")
+      vim.ui.open("obsidian://open?path=" .. encoded)
+    end, { buffer = true, desc = "Open current file in Obsidian" })
 
     vim.keymap.set("v", "<leader>t", function()
       local start_line = vim.fn.line("v")
