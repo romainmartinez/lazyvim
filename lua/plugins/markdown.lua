@@ -8,5 +8,14 @@ return {
         ["markdown.mdx"] = { "markdownlint-cli2", "markdown-toc" },
       },
     },
+    keys = {
+      {
+        "<leader>ct",
+        ":'<,'>!prettier --parser markdown<cr>",
+        mode = "v",
+        ft = "markdown",
+        desc = "Format Markdown Selection",
+      },
+    },
   },
 }
