@@ -40,6 +40,8 @@ vim.api.nvim_create_autocmd("FileType", {
 
     vim.keymap.set("n", "<leader>co", open_in_obsidian, { buffer = true, desc = "Open current file in Obsidian" })
 
+    vim.keymap.set("n", "<leader>um", "<cmd>RenderMarkdown toggle<cr>", { buffer = true, desc = "Toggle Render Markdown" })
+
     vim.keymap.set("v", "<leader>t", function()
       local start_line = vim.fn.line("v")
       local end_line = vim.fn.line(".")
