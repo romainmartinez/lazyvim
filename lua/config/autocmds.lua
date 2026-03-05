@@ -5,7 +5,9 @@
 -- with `vim.api.nvim_create_autocmd`
 --
 -- Or remove existing autocmds by their group name (which is prefixed with `lazyvim_` for the defaults)
--- e.g. vim.api.nvim_del_augroup_by_name("lazyvim_wrap_spell")
+-- Disable default wrap + spell for markdown/text/gitcommit filetypes
+
+vim.api.nvim_del_augroup_by_name("lazyvim_wrap_spell")
 
 -- Auto-save when leaving a buffer or exiting Neovim
 local function augroup(name)
@@ -20,10 +22,3 @@ vim.api.nvim_create_autocmd({ "BufLeave", "VimLeave", "FocusLost" }, {
   end,
 })
 
--- disable spell checking in markdown
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "markdown", "txt" },
-  callback = function()
-    vim.opt_local.spell = false
-  end,
-})
