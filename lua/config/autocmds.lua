@@ -9,6 +9,14 @@
 
 vim.api.nvim_del_augroup_by_name("lazyvim_wrap_spell")
 
+-- Disable autoformat for .env files
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+  pattern = ".env*",
+  callback = function()
+    vim.b.autoformat = false
+  end,
+})
+
 -- Auto-save when leaving a buffer or exiting Neovim
 local function augroup(name)
   return vim.api.nvim_create_augroup("lazyvim_" .. name, { clear = true })
