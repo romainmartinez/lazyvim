@@ -9,5 +9,8 @@ return {
         },
       },
     },
+    keys = {
+      { "<C-g>", function() Snacks.lazygit() end, desc = "Lazygit" },
+    },
   },
 }
