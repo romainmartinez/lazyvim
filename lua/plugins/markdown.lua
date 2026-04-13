@@ -1,5 +1,11 @@
 return {
   {
+    "MeanderingProgrammer/render-markdown.nvim",
+    opts = {
+      enabled = false,
+    },
+  },
+  {
     "stevearc/conform.nvim",
     optional = true,
     opts = {
