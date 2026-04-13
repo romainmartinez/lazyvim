@@ -5,6 +5,8 @@ return {
       sources = {
         files = {
           hidden = true,
+          ignored = true,
+          exclude = { "node_modules", ".git" },
         },
       },
     },
