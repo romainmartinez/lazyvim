@@ -6,7 +6,7 @@ return {
         files = {
           hidden = true,
           ignored = true,
-          exclude = { "node_modules", ".git", ".venv", "*.lock" },
+          exclude = { "node_modules", ".git", ".venv", "*.lock", "*lock.yaml" },
         },
       },
     },
