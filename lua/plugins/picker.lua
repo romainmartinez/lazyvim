@@ -1,3 +1,5 @@
+local exclude = { "node_modules", ".git", ".venv", "*.lock", "*lock.yaml", ".output" }
+
 return {
   "snacks.nvim",
   opts = {
@@ -6,7 +8,10 @@ return {
         files = {
           hidden = true,
           ignored = true,
-          exclude = { "node_modules", ".git", ".venv", "*.lock", "*lock.yaml" },
+          exclude = exclude,
+        },
+        grep = {
+          exclude = exclude,
         },
       },
     },
