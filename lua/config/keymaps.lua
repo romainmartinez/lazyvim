@@ -25,3 +25,7 @@ vim.keymap.set({ "n", "v" }, "<leader>ay", function()
     vim.notify("Copied: " .. text, vim.log.levels.INFO)
   end
 end, { desc = "Send path with line number" })
+
+-- search visual selection literally
+vim.keymap.set("x", "*", [[y/\V<C-R>=escape(@", '/\')<CR><CR>]], { desc = "Search selection forward" })
+vim.keymap.set("x", "#", [[y?\V<C-R>=escape(@", '?\')<CR><CR>]], { desc = "Search selection backward" })
