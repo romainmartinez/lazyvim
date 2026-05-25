@@ -12,5 +12,7 @@ return {
       desc = "Toggle Hardtime",
     },
   },
-  opts = {},
+  opts = {
+    enabled = false,
+  },
 }
