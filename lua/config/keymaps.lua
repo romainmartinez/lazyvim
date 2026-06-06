@@ -29,3 +29,7 @@ end, { desc = "Send path with line number" })
 -- search visual selection literally
 vim.keymap.set("x", "*", [[y/\V<C-R>=escape(@", '/\')<CR><CR>]], { desc = "Search selection forward" })
 vim.keymap.set("x", "#", [[y?\V<C-R>=escape(@", '?\')<CR><CR>]], { desc = "Search selection backward" })
+
+-- remap H/L to ^/$
+vim.keymap.set({ "n", "v", "o" }, "H", "^", { desc = "Go to first non-blank char" })
+vim.keymap.set({ "n", "v", "o" }, "L", "$", { desc = "Go to end of line" })
