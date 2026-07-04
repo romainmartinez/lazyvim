@@ -7,3 +7,6 @@ vim.opt.sidescrolloff = 8
 
 -- Disable auto-inserting comment leader on new lines
 vim.opt.formatoptions:remove({ "c", "r", "o" })
+
+-- Load project-local config (.nvim.lua / .nvimrc / .exrc) from cwd, with a trust prompt
+vim.o.exrc = true
