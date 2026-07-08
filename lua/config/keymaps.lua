@@ -33,3 +33,6 @@ vim.keymap.set("x", "#", [[y?\V<C-R>=escape(@", '?\')<CR><CR>]], { desc = "Searc
 -- remap H/L to ^/$
 vim.keymap.set({ "n", "v", "o" }, "H", "^", { desc = "Go to first non-blank char" })
 vim.keymap.set({ "n", "v", "o" }, "L", "$", { desc = "Go to end of line" })
+
+-- quit with ctrl-c
+vim.keymap.set("n", "<C-c>", "<cmd>qa<cr>", { desc = "Quit all" })
