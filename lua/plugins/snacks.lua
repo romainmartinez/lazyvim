@@ -26,6 +26,8 @@ return {
       },
     },
     keys = {
+      { "<leader>e", false },
+      { "<leader>E", false },
       { "<C-g>", function() Snacks.lazygit() end, desc = "Lazygit" },
     },
   },
