@@ -6,6 +6,7 @@ function M.open(dir)
   -- auto_close's TermClose handler wipes the buffer, deleting our autocmd before it runs
   local term = Snacks.terminal.open({ "spf", "--chooser-file", chooser, dir }, {
     cwd = dir,
+    env = { TERM_PROGRAM = "nvim" },
     auto_close = false,
   })
 
