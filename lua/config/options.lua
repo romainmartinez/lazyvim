@@ -11,10 +11,16 @@ vim.opt.formatoptions:remove({ "c", "r", "o" })
 -- Load project-local config (.nvim.lua / .nvimrc / .exrc) from cwd, with a trust prompt
 vim.o.exrc = true
 
--- Socket per herdr pane, so popups can hand files here (cookbook/herdr/config.toml).
--- Colons would parse as host:port; a nested nvim in the same pane can't bind.
-if vim.env.HERDR_PANE_ID then
-  local sock = vim.fs.normalize("~/.cache/herdr-nvim/" .. vim.env.HERDR_PANE_ID:gsub(":", "-") .. ".sock")
+-- Socket per Rex block, so the lazygit and yazi floats can hand files here (cookbook/rex/init.lua).
+-- Colons would parse as host:port; a nested nvim in the same block can't bind.
+if vim.env.REX_BLOCK then
+  local sock = vim.fs.normalize("~/.cache/rex-nvim/" .. vim.env.REX_BLOCK:gsub("^block:", "") .. ".sock")
   vim.fn.mkdir(vim.fs.dirname(sock), "p")
+  local live, chan = pcall(vim.fn.sockconnect, "pipe", sock)
+  if live then
+    vim.fn.chanclose(chan)
+  else
+    os.remove(sock)
+  end
   pcall(vim.fn.serverstart, sock)
 end
